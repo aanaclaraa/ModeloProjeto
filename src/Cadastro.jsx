@@ -1,5 +1,6 @@
-import { Alert, Box, Button, Container, TextField, Typography } from '@mui/material';
+import { Alert, Box, Button, Container, ImageListItemBar, TextField, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import MenuResponsivo from './components/MenuResponsivo';
 
 function Cadastro() {
 
@@ -56,10 +57,11 @@ function Cadastro() {
 
   return (
     <Container component="section" maxWidth="sm">
+      <MenuResponsivo />
         <Box sx={{ 
             mt: 10,
-            backgroundColor: "#EDEDED",
-            padding: "30px",
+            backgroundColor: "#FFC5EC",
+            padding: "70px",
             borderRadius: "10px",
             display: "flex",
             flexDirection: "column",
@@ -71,7 +73,7 @@ function Cadastro() {
             <Box component="form" onSubmit={Cadastrar}>
                 <TextField 
                   type="text"
-                  label="Nome" 
+                  label="Seu Nome" 
                   variant="filled" 
                   margin="normal"
                   value={nome}

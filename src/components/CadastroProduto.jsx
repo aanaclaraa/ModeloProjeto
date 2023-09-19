@@ -1,7 +1,8 @@
-import { Alert, Box, Button, Container, Link, TextField } from '@mui/material';
+import { Alert, Box, Button, Container, Link, Menu, TextField } from '@mui/material';
 import React, { useState } from 'react'
+import MenuResponsivo from './MenuResponsivo';
 
-function Filmes() {
+function CadastroProduto() {
 
     const [titulo, setTitulo] = useState("");
     const [descricao, setDescricao] = useState("");
@@ -15,7 +16,7 @@ function Filmes() {
 
     function Cadastrar(evento) {
         evento.preventDefault();
-        fetch( process.env.REACT_APP_BACKEND + "filmes", {
+        fetch( process.env.REACT_APP_BACKEND + "filme", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -49,17 +50,19 @@ function Filmes() {
 
     return (
         <Container component="section" maxWidth="sm">
+            <MenuResponsivo />
             <Box sx={{
                 mt: 10,
-                backgroundColor: "#EDEDED",
-                padding: "30px",
-                borderRadius: "10px",
+                backgroundColor: "#FFC5EC",
+                padding: "25px",
+                borderRadius: "5px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center"
             }}>
-                { erro && (<Alert severity="warning">Filme já cadastrado. Tente novamente por favor!</Alert>) }
-                { cadastro && ( <Alert severity="success">Obrigado por cadastrar seu filme!</Alert> )}
+                <h1>Cadastrar</h1>
+                { erro && (<Alert severity="warning">Produto já cadastrado. Tente novamente por favor!</Alert>) }
+                { cadastro && ( <Alert severity="success">Obrigado por cadastrar seu produto!</Alert> )}
                 <Box component="form" onSubmit={Cadastrar}>
                     <TextField
                         type="text"
@@ -128,4 +131,4 @@ function Filmes() {
     )
 }
 
-export default Filmes;
+export default CadastroProduto;

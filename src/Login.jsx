@@ -2,6 +2,7 @@ import { Alert, Box, Button, Checkbox, Container, FormControlLabel, Grid, TextFi
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate, json } from 'react-router-dom';
+import MenuResponsivo from './components/MenuResponsivo';
 
 
 
@@ -57,11 +58,12 @@ function Login() {
 
   return (
     <Container component="section" maxWidth="xs" >
+        <MenuResponsivo />
         <Box 
         sx={{ 
             mt: 10,
-            backgroundColor: "#EDEDED",
-            padding: "30px",
+            backgroundColor: "#FFC5EC",
+            padding: "55px",
             borderRadius: "10px",
             display: "flex",
             flexDirection: "column",
@@ -96,10 +98,10 @@ function Login() {
                 <Button type="submit" variant="contained" fullWidth sx={ { mt: 2, mb: 2 }} size="large">Login</Button>
                 <Grid container>
                     <Grid item xs>
-                        Esqueci a senha
+                        <a href='#'>Esqueci a senha</a>
                     </Grid>
                     <Grid item>
-                        Cadastrar
+                        <a href='cadastro'>Cadastrar</a>
                     </Grid>
                 </Grid>
             </Box>

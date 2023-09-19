@@ -6,9 +6,7 @@ function EditaFilme() {
 
     const { id } = useParams();
     const [titulo, setTitulo] = useState("");
-    const [descricao, setDescricao] = useState("");
-    const [ano, setAno] = useState("");
-    const [duracao, setDuracao] = useState("");
+    const [ descricao, setDescricao ] = useState("")
     const [categoria, setCategoria] = useState("");
     const [imagem, setImagem] = useState("");
     const [editar, setEditar] = useState(false);
@@ -25,13 +23,11 @@ function EditaFilme() {
         .then((json) => {
             if( !json.status ) {
                 setTitulo( json.titulo );
-                setDescricao( json.descricao );
-                setAno( json.ano );
-                setDuracao( json.duracao);
+                setDescricao( json.descricao);
                 setImagem( json.imagem );
                 setCategoria( json.categoria );
             } else {
-                setErro( "Filme não encontrado" );
+                setErro( "Joia não encontrada" );
             }
         })
         .catch((erro) => { setErro(true) })
@@ -49,11 +45,9 @@ function EditaFilme() {
                 {
                     id: id,
                     titulo: titulo,
-                    descricao: descricao,
-                    ano: ano,
-                    duracao: duracao,
+                    categoria: categoria,
                     imagem: imagem,
-                    categoria: categoria
+                    descricao: descricao
                 }
             )
         })
@@ -65,7 +59,7 @@ function EditaFilme() {
                 setErro( false );
             } else {
                 setErro(true);
-                setEditar( "Não foi possível editar o filme" );
+                setEditar( "Não foi possível editar" );
             }
         })
         .catch((erro) => { setErro( "Erro ao processar a requisição") })
@@ -86,7 +80,7 @@ function EditaFilme() {
                 alignItems: "center"
             }}>
                 { erro && ( <Alert severity="warning">{erro}</Alert>)}
-                { editar && ( <Alert severity="success">Filme editado com sucesso</Alert>)}
+                { editar && ( <Alert severity="success">Joia editado com sucesso</Alert>)}
                 <Box component="form" onSubmit={Editar}>
                     <TextField
                         type="text"
@@ -105,26 +99,6 @@ function EditaFilme() {
                         margin="normal"
                         value={descricao}
                         onChange={(e) => setDescricao(e.target.value)}
-                        fullWidth
-                        required
-                    />
-                    <TextField
-                        type="number"
-                        label="Ano"
-                        variant="filled"
-                        margin="normal"
-                        value={ano}
-                        onChange={(e) => setAno(e.target.value)}
-                        fullWidth
-                        required
-                    />
-                    <TextField
-                        type="text"
-                        label="Duração"
-                        variant="filled"
-                        margin="normal"
-                        value={duracao}
-                        onChange={(e) => setDuracao(e.target.value)}
                         fullWidth
                         required
                     />
