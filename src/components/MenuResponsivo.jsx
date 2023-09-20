@@ -2,7 +2,8 @@ import { AppBar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Ty
 import React from 'react';
 import { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import AdbIcon from '@mui/icons-material/Adb';
+import { Image } from '@mui/icons-material';
+
 
 function MenuResponsivo(props) {
 
@@ -25,10 +26,10 @@ function MenuResponsivo(props) {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" className='container-principal'>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr:1 }}/>
+                    <Image sx={{ display: { xs: 'none', md: 'flex' }, mr:1 }}/>
                     <Typography
                         variant="h6"
                         noWrap
@@ -82,19 +83,25 @@ function MenuResponsivo(props) {
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md:'flex' } }}>
                         <Button
                             onClick={handleCloseNavMenu}
-                            sx={{my: 2, color: 'white', display: { xs: 'none', md:'flex' } }}>
+                            sx={{my: 3, color: 'white', display: { xs: 'none', md:'flex' } }}>
                         
-                        <a href='./cadastro'>Cadatrar</a>
+                        <a href='./cadastro'>Cadastrar</a>
                         </Button>
                         <Button
                             onClick={handleCloseNavMenu}
-                            sx={{my: 2, color: 'white', display: { xs: 'none', md:'flex' } }}>
+                            sx={{my: 3, color: 'white', display: { xs: 'none', md:'flex' } }}>
                         
                         <a href='./login'>Login</a>
                         </Button>
                         <Button
                             onClick={handleCloseNavMenu}
-                            sx={{my: 2, color: 'white', display: { xs: 'none', md:'flex' } }}>
+                            sx={{my: 3, color: 'white', display: { xs: 'none', md:'flex' } }}>
+                        
+                        <a href='./cadastro-produto'>Cadastro de produtos </a>
+                        </Button>
+                        <Button
+                            onClick={handleCloseNavMenu}
+                            sx={{my: 3, color: 'white', display: { xs: 'none', md:'flex' } }}>
                         
                         <a href='./'>Sair </a>
                         </Button>

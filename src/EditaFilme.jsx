@@ -1,6 +1,7 @@
 import { Box, Container, TextField, Button, Alert } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import MenuResponsivo from "./components/MenuResponsivo";
 
 function EditaFilme() {
 
@@ -8,12 +9,15 @@ function EditaFilme() {
     const [titulo, setTitulo] = useState("");
     const [ descricao, setDescricao ] = useState("")
     const [categoria, setCategoria] = useState("");
+    const [duracao, setDuracao] = useState("");
+    const [ano, setAno] = useState("");
     const [imagem, setImagem] = useState("");
     const [editar, setEditar] = useState(false);
     const [erro, setErro] = useState(false);
 
     useEffect( () => {
-        fetch( process.env.REACT_APP_BACKEND + "filmes/" + id, {
+        const usuario = localStorage.getItem( "usuario" );
+        fetch( process.env.REACT_APP_BACKEND + "produtos/" + usuario + "/" + id, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json'
@@ -36,7 +40,7 @@ function EditaFilme() {
     function Editar( evento ) {
         evento.preventDefault();
 
-        fetch( process.env.REACT_APP_BACKEND + "filmes", {
+        fetch( process.env.REACT_APP_BACKEND + "produtos", {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -45,9 +49,13 @@ function EditaFilme() {
                 {
                     id: id,
                     titulo: titulo,
+                    descricao: descricao,
+                    ano:ano,
+                    duracao: duracao,
                     categoria: categoria,
                     imagem: imagem,
-                    descricao: descricao
+                    descricao: descricao,
+                    usuario: localStorage.getItem( "usuario" )
                 }
             )
         })
@@ -70,9 +78,10 @@ function EditaFilme() {
 
     return (
         <Container component="section" maxWidth="sm">
+            <MenuResponsivo />
             <Box sx={{
                 mt: 10,
-                backgroundColor: "#EDEDED",
+                backgroundColor: "#FFC5EC",
                 padding: "30px",
                 borderRadius: "10px",
                 display: "flex",
@@ -80,7 +89,7 @@ function EditaFilme() {
                 alignItems: "center"
             }}>
                 { erro && ( <Alert severity="warning">{erro}</Alert>)}
-                { editar && ( <Alert severity="success">Joia editado com sucesso</Alert>)}
+                { editar && ( <Alert severity="success">Produto editado com sucesso!</Alert>)}
                 <Box component="form" onSubmit={Editar}>
                     <TextField
                         type="text"
@@ -122,7 +131,7 @@ function EditaFilme() {
                         fullWidth
                         required
                     />
-                    <Button type="submit" variant="contained" fullWidth sx={{ mt: 2, mb: 2 }} >Editar</Button>
+                        <Button type="submit" variant="contained" fullWidth sx={{ mt: 2, mb: 2 }} >Editar</Button>
                 </Box>
 
             </Box>

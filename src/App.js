@@ -1,8 +1,9 @@
 import { Avatar, Button, Container } from "@mui/material";
 import { useEffect, useState } from "react";
-import Filme from "./components/CadastroProduto";
+import Filme from "./components/Filme";
 import Style from "./global.css";
 import MenuResponsivo from "./components/MenuResponsivo";
+import Cadastro from "./components/CadastroProduto";
 
 function App() {
 
@@ -10,7 +11,10 @@ function App() {
     const [ erro, setErro ] = useState();
 
     useEffect(() => {
-        fetch( process.env.REACT_APP_BACKEND + "filmes", {
+
+        const usuario = localStorage.getItem( "usuario" );
+
+        fetch( process.env.REACT_APP_BACKEND + "produtos/" + usuario , {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -22,7 +26,7 @@ function App() {
 
     function Excluir( evento, id ) {
         evento.preventDefault();
-        fetch( process.env.REACT_APP_BACKEND + "filmes" , {
+        fetch( process.env.REACT_APP_BACKEND + "produtos" , {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -41,7 +45,7 @@ function App() {
 
     return (
         <>
-            <MenuResponsivo />
+            <MenuResponsivo className='container-principal'/>
             <Container sx={{ 
                 display: "flex" ,
                 flexFlow: "row",

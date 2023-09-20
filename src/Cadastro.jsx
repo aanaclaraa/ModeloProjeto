@@ -15,7 +15,7 @@ function Cadastro() {
   function Cadastrar( evento ) {
 
     evento.preventDefault();
-    fetch( process.env.REACT_APP_BACKEND + "users", {
+    fetch( process.env.REACT_APP_BACKEND + "usuarios", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ function Cadastro() {
 
   return (
     <Container component="section" maxWidth="sm">
-      <MenuResponsivo />
+      <MenuResponsivo className='container-principal'/>
         <Box sx={{ 
             mt: 10,
             backgroundColor: "#FFC5EC",

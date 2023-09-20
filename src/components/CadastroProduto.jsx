@@ -1,9 +1,11 @@
 import { Alert, Box, Button, Container, Link, Menu, TextField } from '@mui/material';
 import React, { useState } from 'react'
 import MenuResponsivo from './MenuResponsivo';
+import { useParams } from 'react-router-dom';
 
 function CadastroProduto() {
 
+    const { id } = useParams();
     const [titulo, setTitulo] = useState("");
     const [descricao, setDescricao] = useState("");
     const [ano, setAno] = useState("");
@@ -16,19 +18,21 @@ function CadastroProduto() {
 
     function Cadastrar(evento) {
         evento.preventDefault();
-        fetch( process.env.REACT_APP_BACKEND + "filme", {
+        fetch( process.env.REACT_APP_BACKEND + "produtos", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(
                 {
+                    id: id,
                     titulo: titulo,
                     descricao: descricao,
                     ano: ano,
                     duracao: duracao,
                     imagem: imagem,
-                    categoria: categoria
+                    categoria: categoria,
+                    usuario: localStorage.getItem( "usuario" )
                 }
             )
         })
@@ -81,26 +85,6 @@ function CadastroProduto() {
                         margin="normal"
                         value={descricao}
                         onChange={(e) => setDescricao(e.target.value)}
-                        fullWidth
-                        required
-                    />
-                    <TextField
-                        type="number"
-                        label="Ano"
-                        variant="filled"
-                        margin="normal"
-                        value={ano}
-                        onChange={(e) => setAno(e.target.value)}
-                        fullWidth
-                        required
-                    />
-                    <TextField
-                        type="text"
-                        label="Duração"
-                        variant="filled"
-                        margin="normal"
-                        value={duracao}
-                        onChange={(e) => setDuracao(e.target.value)}
                         fullWidth
                         required
                     />
